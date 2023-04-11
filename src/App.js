@@ -1,10 +1,10 @@
-import dayPicture from "./assets/dayPicture.jpg"
-import nightPicture from "./assets/nightPicture.jpg"
-import rainNightPicture from "./assets/rainNightPicture.jpg"
-import rainDayPicture from "./assets/rainDayPicture.jpg"
-import dayPicture1 from "./assets/dayPicture1.jpg"
-import dayCloudsPicture from "./assets/dayCloudsPicture.jpg"
-import daySunnyPictures from "./assets/daySunnyPictures.jpg"
+import dayPicture from "./assets/dayPicture.png"
+import nightPicture from "./assets/nightPicture.png"
+import rainNightPicture from "./assets/rainNightPicture.png"
+import rainDayPicture from "./assets/rainDayPicture.png"
+import dayPicture1 from "./assets/dayPicture1.png"
+import dayCloudsPicture from "./assets/dayCloudsPicture.png"
+import daySunnyPictures from "./assets/daySunnyPictures.png"
 import React, {useState} from 'react'
 import Favorite from "./components/FavoriteCityTask/Favorite";
 import axios from 'axios'
@@ -14,6 +14,7 @@ import './index.css'
 function App() {
 
   const [data,setData] = useState({})
+  const [forecastData, setForecastData] = useState([]);
   const [location,setLocation] = useState('')
   const [theme, setTheme] = useState(dayPicture1)
 
@@ -24,6 +25,12 @@ function App() {
         setData(response.data)
         console.log(response.data)
         setThemeByWeather(response.data)
+      });
+      axios.get(forecastUrl).then((response) => {
+        const forecastList = response.data.list.filter((weather) => {
+          return new Date(weather.dt_txt).getHours() === 12;
+        })
+        setForecastData(forecastList);
       })
       setLocation('')
     }
@@ -37,6 +44,12 @@ function App() {
       setThemeByWeather(response.data)
     })
     setLocation('')
+  }
+  const getDateName = (dateString) =>
+  {
+    var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    var d = new Date(dateString);
+    return days[d.getDay()];
   }
 
   const setThemeByWeather = (data) => {
@@ -59,10 +72,12 @@ function App() {
   }
 
   const url=`https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=62c8f7b27e7abc861e99d1f3014cd3b0`
+  const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&units=metric&appid=62c8f7b27e7abc861e99d1f3014cd3b0`
 
   return (
       <div className="app" style={{backgroundImage: `url(${theme})`}}>
         <div className="search">
+          <h2>Search City:</h2>
           <input
               value={location}
               onChange={event =>setLocation(event.target.value)}
@@ -106,7 +121,20 @@ function App() {
               {data.main ?  <p>{data.wind.speed.toFixed()} Km/H</p> : null}
             </div>
           </div>
-          }
+            }
+          {forecastData.length != 0 &&
+          <div className={'bottom'}>
+            {
+              forecastData.map((dayWeather) => (
+              <div>
+                <p>{getDateName(dayWeather.dt_txt)}</p>
+                <p>{dayWeather.main.feels_like.toFixed()} °C</p>
+              </div>
+              ))}
+
+
+          </div>
+            }
         </div>
       </div>
   );
