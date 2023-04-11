@@ -1,13 +1,133 @@
+@import url('https://www.google.com/search?q=poze+neutre+cu+natura&tbm=isch&ved=2ahUKEwj4n6LfwJ3-AhVpi_0HHX6-AhAQ2-cCegQIABAA&oq=poze+neutre+cu+natura&gs_lcp=CgNpbWcQAzoFCAAQgAQ6BggAEAgQHjoHCAAQGBCABDoLCAAQgAQQsQMQgwE6BAgAEAM6CAgAEIAEELEDOggIABCxAxCDAToKCAAQDRCABBCxAzoNCAAQDRCABBCxAxCDAVCuA1jrQWDYQmgAcAB4AIABcYgBihWSAQQzMy4xmAEAoAEBqgELZ3dzLXdpei1pbWfAAQE&sclient=img&ei=Ow4zZLiWE-mW9u8P_vyKgAE&bih=657&biw=940&rlz=1C5CHFA_enRO995RO995#imgrc=pc9Cy1uZvncD6M');
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Outfit', 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+p{
+  font-size: 1.6rem;
+}
+
+h1{
+  font-size: 6rem;
+}
+
+.app{
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  background-color: pink;
+  color: white;
+  background-position: center;
+  background-size: cover;
+
+}
+
+.app .search{
+  text-align: center;
+  padding: 1rem;
+}
+
+.app input{
+  padding: .7rem 1.5rem;
+  font-size: 1.2rem;
+  border-radius: 25px;
+  border: 1px solid rgba(255,255,255,0.8);
+  background: rosybrown;
+}
+
+.container{
+
+  max-width: 700px;
+  height: 700px;
+  margin: auto;
+  padding: 0 1rem;
+  position:relative;
+  top: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.app-top{
+  width: 100%;
+  margin: 1rem auto;
+}
+.app .bottom{
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+  width: 100%;
+  margin: 1rem auto;
+  padding: 1rem;
+  border-radius: 12px;
+  background-color: rosybrown;
+
+}
+
+.bold{
+  font-weight: 700;
+}
+
+.add-button {
+  background-color: #cd32ab;
+  margin-left: 32px;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  width: 96px;
+  height: 32px;
+}
+
+.add-button:hover {
+  background-color: #9d2584;
+}
+
+.remove-button {
+  background-color: #cd3232;
+  margin-left: 16px;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  width: 64px;
+  height: 24px;
+}
+
+.remove-button:hover {
+  background-color: #9d2525;
+}
+
+.list-item {
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  min-width: 200px;
+}
+
+.items-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.favourite-city-name {
+  background-color: transparent;
+  border: none;
+  color: white;
+  border-bottom: 1px solid white;
+}
+
+.favourite-city-name:hover {
+  color: #fad4e0;
 }
